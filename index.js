@@ -35,6 +35,10 @@ app.get("/api/:date?",function(req,res){
     date = new Date(x)
     res.json({"unix" : x,"utc" : date.toUTCString()});
   }
+  else if(x!=undefined && /^[0-9]{2}\s[a-zA-Z]+\s[0-9]{4}$/.test(x)){
+    date = new Date(x)
+    res.json({"unix" : date.getTime(),"utc" : date.toUTCString()});
+  }
   else if(x==undefined){
     date = new Date();
     res.json({"unix" : date.getTime(),"utc": date.toUTCString()});
